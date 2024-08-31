@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import Todo from './components/Todo'
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+    <Navbar/>
+    <Todo/>
+    </>
   )
 }
 
