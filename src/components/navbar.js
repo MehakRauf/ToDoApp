@@ -1,4 +1,6 @@
 import React from 'react'
+import AddIcon from '@mui/icons-material/Add';
+
 
 const Navbar = () => {
     return (
@@ -24,7 +26,7 @@ const Navbar = () => {
                         type="button"
                         id="button-addon2"
                     >
-                        <b>+</b>
+                        <b><AddIcon/></b>
                     </button>
                 </div>
             </div>
