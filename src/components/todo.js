@@ -45,9 +45,9 @@ const Todo = ({ value }) => {
         <div className="container d-flex justify-content-center align-items-center">
             <div
                 className="input-group mt-3 cont"
-                style={{ 
-                    maxWidth: "400px", 
-                    backgroundColor: isChecked ? "#3CB371" : "#f9f9f9" 
+                style={{
+                    maxWidth: "400px",
+                    backgroundColor: isChecked ? "#3CB371" : "#f9f9f9"
                 }}
             >
                 <div>
