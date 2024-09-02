@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { StoreContext } from '../context/StoreContext';
 import AddIcon from '@mui/icons-material/Add';
 
 const Navbar = () => {
     const { text, setText, addNotes, notes } = useContext(StoreContext);
-    const navigate = useNavigate();
 
     return (
         <>
@@ -33,7 +31,6 @@ const Navbar = () => {
                         id="button-addon2"
                         onClick={() => {
                             addNotes();
-                            navigate('/todo');
                         }}>
                         <b><AddIcon /></b>
                     </button>

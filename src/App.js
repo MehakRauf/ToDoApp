@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StoreContext } from './context/StoreContext'
 import Navbar from './components/Navbar'
 import Todo from './components/Todo'

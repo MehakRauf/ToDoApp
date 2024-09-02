@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const StoreContext = createContext(null);
 
@@ -10,7 +10,7 @@ const StoreContextProvider = (props) => {
         const savedNotes = JSON.parse(localStorage.getItem('notes'));
         return savedNotes;
     });
-    
+
     const addNotes = () => {
         setNotes((prev) => ({ ...prev, [count]: text }));
         setCount((prev) => prev + 1);
