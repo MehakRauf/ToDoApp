@@ -1,15 +1,19 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-    const [notes, setNotes] = useState({});
     const [text, setText] = useState("");
     const [count, setCount] = useState(0);
 
+    const [notes, setNotes] = useState(() => {
+        const savedNotes = JSON.parse(localStorage.getItem('notes'));
+        return savedNotes;
+    });
+    
     const addNotes = () => {
         setNotes((prev) => ({ ...prev, [count]: text }));
-        setCount((prev) => prev + 1);  
+        setCount((prev) => prev + 1);
         setText("")
     }
 
@@ -27,8 +31,10 @@ const StoreContextProvider = (props) => {
             return newNotes;
         });
     }
+
     const editNotes = (oldText, newText) => {
         setNotes((prev) => {
+
             // Convert object to an array of [key, value] pairs
             const entries = Object.entries(prev);
 

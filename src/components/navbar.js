@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import AddIcon from '@mui/icons-material/Add';
-import { StoreContext } from '../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
+import { StoreContext } from '../context/StoreContext';
+import AddIcon from '@mui/icons-material/Add';
 
 const Navbar = () => {
     const { text, setText, addNotes, notes } = useContext(StoreContext);

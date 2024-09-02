@@ -1,11 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import { StoreContext } from './context/StoreContext'
 import Navbar from './components/Navbar'
 import Todo from './components/Todo'
-import { Routes, Route } from 'react-router-dom'
-import { StoreContext } from './context/StoreContext'
 
 const App = () => {
-  const { text, setText, removeNotes, notes } = useContext(StoreContext);
+  const { notes } = useContext(StoreContext);
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
 
   return (
     <>
