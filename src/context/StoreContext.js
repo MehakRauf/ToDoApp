@@ -19,39 +19,30 @@ const StoreContextProvider = (props) => {
 
     const removeNotes = (text) => {
         setNotes((prev) => {
-            // Convert object to an array of [key, value] pairs
-            const entries = Object.entries(prev);
-
-            // Filter out the entry where the value matches the text to be removed
-            const filteredEntries = entries.filter(([key, value]) => value !== text);
-
-            // Convert the filtered entries back to an object
-            const newNotes = Object.fromEntries(filteredEntries);
-
-            return newNotes;
+            const newNotes = { ...prev }; // Create a shallow copy of the notes object
+            for (const [key, value] of Object.entries(newNotes)) {
+                if (value === text) {
+                    delete newNotes[key]; // Remove the entry with the matching value
+                    break; // Exit the loop once the note is found and removed
+                }
+            }
+            return newNotes; // Return the updated object
         });
-    }
+    };
 
     const editNotes = (oldText, newText) => {
         setNotes((prev) => {
-
-            // Convert object to an array of [key, value] pairs
-            const entries = Object.entries(prev);
-
-            // Map over the entries to update the note with the matching oldText
-            const updatedEntries = entries.map(([key, value]) => {
+            const newNotes = { ...prev }; // Create a shallow copy of the notes object
+            for (const [key, value] of Object.entries(newNotes)) {
                 if (value === oldText) {
-                    return [key, newText]; // Update the value with newText
+                    newNotes[key] = newText; // Update the value for the matching key
+                    break; // Exit the loop once the note is found and updated
                 }
-                return [key, value]; // Keep the existing key-value pair
-            });
-
-            // Convert the updated entries back to an object
-            const newNotes = Object.fromEntries(updatedEntries);
-
-            return newNotes;
+            }
+            return newNotes; // Return the updated object
         });
-    }
+    };
+
 
 
     const contextValue = {

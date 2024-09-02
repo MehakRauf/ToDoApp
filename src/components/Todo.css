@@ -47,6 +47,7 @@
     display: flex;
     gap: 15px;
     margin-top: 10px;
+    justify-content: center;
 }
 
 /* Common icon styling */
@@ -84,7 +85,8 @@
 .cancel-button:hover,
 .icons-container .edit-icon:hover,
 .icons-container .delete-icon:hover,
-.icons-container .eye-icon:hover {
+.icons-container .eye-icon:hover
+{
     opacity: 0.5;
 }
 
