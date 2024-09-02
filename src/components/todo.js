@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
 import './Todo.css';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
@@ -10,6 +10,7 @@ const Todo = ({ value }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [isViewing, setIsViewing] = useState(false);
     const [newText, setNewText] = useState(value);
+    const [isChecked, setIsChecked] = useState(false);
 
     const handleViewClick = () => {
         setIsViewing(true);
@@ -32,9 +33,23 @@ const Todo = ({ value }) => {
         setIsEditing(false);
     };
 
+    const handleCheckboxChange = () => {
+        setIsChecked((prev) => !prev);
+    };
+
+    const truncateText = (text, length) => {
+        return text.length > length ? `${text.substring(0, length)}...` : text;
+    };
+
     return (
         <div className="container d-flex justify-content-center align-items-center">
-            <div className="input-group mt-3 cont" style={{ maxWidth: "400px" }}>
+            <div
+                className="input-group mt-3 cont"
+                style={{ 
+                    maxWidth: "400px", 
+                    backgroundColor: isChecked ? "#3CB371" : "#f9f9f9" 
+                }}
+            >
                 <div>
                     {isEditing ? (
                         <div className="edit-modal">
@@ -52,7 +67,7 @@ const Todo = ({ value }) => {
                             <button onClick={handleNotView} className='cancel-button'>CANCEL</button>
                         </div>
                     ) : (
-                        <p>{(value.length) > 10 ? value.substring(0, 10) + "..." : value}</p>
+                        <p>{truncateText(value, 10)}</p>
                     )}
                 </div>
                 {!isEditing && !isViewing && (
@@ -65,6 +80,13 @@ const Todo = ({ value }) => {
                         </div>
                         <div className="eye-icon" onClick={handleViewClick}>
                             <b><RemoveRedEyeIcon /></b>
+                        </div>
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                checked={isChecked}
+                                onChange={handleCheckboxChange}
+                            />
                         </div>
                     </div>
                 )}
